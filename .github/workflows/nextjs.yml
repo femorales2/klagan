@@ -25,15 +25,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  print-vars:
-    runs-on: ubuntu-latest
-    name: Show vars
-    steps:
-    - name: Print the vars to STDOUT
-      run: |
-        echo test1 vars as secret = ${{ secrets.MARVEL_PUBLIC_TOKEN }}
-        echo test1 vars as secret = ${{ env.MARVEL_PUBLIC_TOKEN }}
-        echo test1 vars as secret = ${{ vars.MARVEL_PUBLIC_TOKEN }}
   # Build job
   build:
     runs-on: ubuntu-latest
@@ -43,7 +34,9 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
-          echo test1 as vars as secret = ${{ vars.MARVEL_PUBLIC_TOKEN }}
+          echo test1 as vars as MARVEL_PUBLIC_TOKEN = ${{ vars.MARVEL_PUBLIC_TOKEN }}
+          echo "MARVEL_PUBLIC_TOKEN=${{ vars.MARVEL_PUBLIC_TOKEN }}" >> $GITHUB_OUTPUT
+          echo "MARVEL_PRIVATE_TOKEN=${{ vars.MARVEL_PRIVATE_TOKEN }}" >> $GITHUB_OUTPUT
           if [ -f "${{ github.workspace }}/yarn.lock" ]; then
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
