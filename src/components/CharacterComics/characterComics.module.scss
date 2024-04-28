@@ -1,0 +1,19 @@
+.comicContent {
+  max-width: 960px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  .title {
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 878px) {
+    padding: 0 45px;
+  }
+
+  @media screen and (max-width: 425px) {
+    padding: 0 15px;
+  }
+}

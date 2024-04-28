@@ -1,0 +1,23 @@
+.searchWrapper {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  width: 100%;
+  .searchInput {
+    .inputWrapper {
+      display: flex;
+      gap: 12px;
+      padding-bottom: 12px;
+      align-items: center;
+      .input {
+        border: 0;
+        font-size: 16px;
+        width: 100%;
+        outline: none;
+      }
+    }
+  }
+  .results {
+    font-size: 12px;
+  }
+}

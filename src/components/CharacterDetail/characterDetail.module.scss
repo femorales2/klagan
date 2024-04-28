@@ -1,0 +1,58 @@
+.characterContent {
+  border-top: 1px solid #333333;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  .photo {
+    width: 320px;
+    height: 320px;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 592px;
+    .titleContainer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .title {
+        font-size: 2.5rem;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  @media screen and (max-width: 878px) {
+    .content {
+      padding-right: 45px;
+      .titleContainer {
+        .title {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    flex-direction: column;
+    gap: 20px;
+    .photo {
+      width: 100%;
+      height: 390px;
+      img {
+        width: 100vw;
+        height: 100%;
+      }
+    }
+
+    .content {
+      padding: 0 15px 45px 15px;
+    }
+  }
+}

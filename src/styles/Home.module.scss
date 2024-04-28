@@ -1,0 +1,10 @@
+.home {
+  padding: 48px;
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+
+  @media screen and (max-width: 480px) {
+     padding: 48px 15px;
+  }
+}
