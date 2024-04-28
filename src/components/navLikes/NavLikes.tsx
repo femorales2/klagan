@@ -11,7 +11,7 @@ const NavLikes = () => {
   const {favorites, setEnableFavoriteView, enabledFavoriteView} = useCardContext();
   return (
     <div className={classNames(styles.navLikes)} onClick={() => {
-      setEnableFavoriteView(!enabledFavoriteView);
+      setEnableFavoriteView(true);
       router.push("/");
     }}>
       <Image src={LikeIcon} alt="Favorites" className={classNames(styles.likeIcon)} />
