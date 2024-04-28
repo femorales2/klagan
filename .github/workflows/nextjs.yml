@@ -34,6 +34,7 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
+          echo test1 as vars as secret = ${{ vars.MARVEL_PUBLIC_TOKEN }}
           if [ -f "${{ github.workspace }}/yarn.lock" ]; then
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
@@ -49,8 +50,8 @@ jobs:
             exit 1
           fi
         env:
-          MARVEL_PUBLIC_TOKEN: ${{ env.MARVEL_PUBLIC_TOKEN }}
-          MARVEL_PRIVATE_TOKEN: ${{ env.MARVEL_PRIVATE_TOKEN }}
+          MARVEL_PUBLIC_TOKEN: ${{ vars.MARVEL_PUBLIC_TOKEN }}
+          MARVEL_PRIVATE_TOKEN: ${{ vars.MARVEL_PRIVATE_TOKEN }}
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
