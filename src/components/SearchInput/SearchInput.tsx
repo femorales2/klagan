@@ -5,18 +5,19 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import searchIcon from '../../../public/assets/img/magnifiying_glass.png';
 import { useCardContext } from '@/context/CardContext';
+import { getFavoritesIds } from '@/utils/character';
 
 interface ISearchInput {}
 
 const SearchInput = (props: ISearchInput) => {
-  const { data, search, setSearch } = useCardContext();
+  const { data, search, setSearch, enabledFavoriteView, favorites } = useCardContext();
   
   const results = useMemo(() => {
     return (Boolean(search)
-      ? data.results.filter(char => char.name.toLowerCase().includes(search.toLowerCase())).length
-      : data.count) ?? 0;
+      ? enabledFavoriteView ? favorites.length : data.results.filter(char => char.name.toLowerCase().includes(search.toLowerCase())).length
+      : enabledFavoriteView ? favorites.length : data.count) ?? 0;
   },
-    [data.count, data.results, search]);
+    [data.count, data.results, search, favorites, enabledFavoriteView]);
   
   return (
     <div className={classNames(styles.searchWrapper)}>
