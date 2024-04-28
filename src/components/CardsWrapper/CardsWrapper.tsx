@@ -13,7 +13,7 @@ const CardsWrapper = () => {
     <div className={classNames(styles.wrapper)}>
       {data.results
         ?.filter((character) =>
-          character.name.toLowerCase().includes(search)
+          character.name.toLowerCase().includes(search.toLowerCase())
         )
         .map((character) => (
           <Card

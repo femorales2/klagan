@@ -11,9 +11,11 @@ interface ISearchInput {}
 const SearchInput = (props: ISearchInput) => {
   const { data, search, setSearch } = useCardContext();
   
-  const results = useMemo(() => (Boolean(search)
-    ? data.results.filter(char => char.name.toLowerCase().includes(search)).length
-    : data.count) ?? 0,
+  const results = useMemo(() => {
+    return (Boolean(search)
+      ? data.results.filter(char => char.name.toLowerCase().includes(search.toLowerCase())).length
+      : data.count) ?? 0;
+  },
     [data.count, data.results, search]);
   
   return (
