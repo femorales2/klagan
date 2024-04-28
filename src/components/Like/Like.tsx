@@ -22,7 +22,7 @@ const Like = ({ characterId, size = 10 }: ILike) => {
   };
 
   return (
-    <span onClick={handleClick}>
+    <span data-testid="like" onClick={handleClick}>
       {isFavorite ? (
         <Heart width={size} height={size} />
       ) : (

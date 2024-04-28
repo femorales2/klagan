@@ -10,7 +10,7 @@ import useRequester from '@/hooks/useRequester';
 import { fetchCharacters } from '@/utils/api';
 import { Character, CharacterResponse } from '@/type/character';
 
-interface ICardContext {
+export interface ICardContext {
   data: CharacterResponse['data'];
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
@@ -22,7 +22,9 @@ interface ICardContext {
   setEnableFavoriteView: Dispatch<SetStateAction<boolean>>;
 }
 
-const CardContext = createContext<ICardContext>({} as unknown as ICardContext);
+export const CardContext = createContext<ICardContext>({
+  favorites: []
+} as unknown as ICardContext);
 
 export const useCardContext = () => useContext(CardContext);
 

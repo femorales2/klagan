@@ -12,15 +12,19 @@ interface ISearchInput {}
 const SearchInput = (props: ISearchInput) => {
   const { data, search, setSearch, enabledFavoriteView, favorites } =
     useCardContext();
+  
+  const favoriteIds = useMemo(() => getFavoritesIds(favorites), [favorites]);
 
   const results = useMemo(() => {
     return (
       (Boolean(search)
-        ? enabledFavoriteView
-          ? favorites.length
-          : data.results.filter((char) =>
-              char.name.toLowerCase().includes(search.toLowerCase())
-            ).length
+        ? data.results.filter((char) =>
+          char.name.toLowerCase().includes(search.toLowerCase())
+        ).filter(char => {
+          if (!enabledFavoriteView) return true;
+          
+          return favoriteIds.includes(char.id)
+        }).length
         : enabledFavoriteView
           ? favorites.length
           : data.count) ?? 0
