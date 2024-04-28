@@ -13,7 +13,6 @@ const CardsWrapper = () => {
     return favorites.map(favorite => favorite.id);
   }, [favorites]);
   
-  console.log(favorites);
   return (
     <div className={classNames(styles.wrapper)}>
       {data.results
