@@ -1,10 +1,9 @@
-import React, { useEffect, useLayoutEffect } from 'react';
-import { GetServerSideProps } from 'next';
+import React, { useEffect } from 'react';
 import CharacterDetail from '@/components/CharacterDetail/CharacterDetail';
 import styles from "./characterDetailPage.module.scss";
 import CharacterComics from '@/components/CharacterComics/CharacterComics';
 import { useCardContext } from '@/context/CardContext';
-import { fetchCharacter, fetchCharacters } from '@/utils/api';
+import { fetchCharacters } from '@/utils/api';
 
 interface ICharacterDetailPage {
   [index: string]: string;
@@ -15,8 +14,7 @@ const Page = ({id}: ICharacterDetailPage) => {
   
   const {setSelectedId} = useCardContext();
   
-  useLayoutEffect(() => {
-    console.log("page id hook", id);
+  useEffect(() => {
     setSelectedId(id);
   }, [id, setSelectedId]);
   
@@ -29,26 +27,23 @@ const Page = ({id}: ICharacterDetailPage) => {
 };
 
 export const getStaticPaths = async () => {
-  const response = await fetchCharacters({limit: 50});
-  
-  console.log(response);
+  const response = await fetchCharacters({limit: 50, ssr: true});
+  const paths = response.data.results.map(character => ({
+    params: {
+      id: character.id.toString()
+    }
+  }));
   
   return {
-    paths: [
-      {
-        params: {
-          id: '1011334'
-        }
-      }
-    ],
-    fallback: true
+    paths: paths,
+    /**
+     * if path was not pre-generated and build time let's give a chance to look for characters beyond first 50's
+     */
+    fallback: 'blocking'
   }
 }
 
 export const getStaticProps = async (context: {params: {id: string}}) => {
-  /*console.log(context);
-  const character = await fetchCharacter(context.params.id);*/
-  
   return {
     props: {
       id: context.params.id
@@ -56,23 +51,5 @@ export const getStaticProps = async (context: {params: {id: string}}) => {
   }
   
 }
-
-/*export const getServerSideProps: GetServerSideProps<ICharacterDetailPage, ICharacterDetailPage> = async (context) => {
-  const id = context.params?.id;
-  /!**
-   * if there isn't id nor id is a number
-   * we shall redirect to home
-   *!/
-  if (!id || isNaN(parseInt(id))) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false
-      }
-    };
-  }
-  
-  return {props: {id}};
-}*/
 
 export default Page;

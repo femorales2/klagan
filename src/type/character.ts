@@ -1,3 +1,5 @@
+import { PUBLIC_KEY } from '@/constants/api';
+
 export type Character = {
   id: number | string;
   name: string;
@@ -24,4 +26,12 @@ export type CharacterResponse = {
 export type Thumbnail = {
   path: string;
   extension: string;
+}
+
+export type ParamsType = {
+  apikey: string;
+  limit: string;
+  offset: string;
+  hash?: string;
+  ts?: string;
 }

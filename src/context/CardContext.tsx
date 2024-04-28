@@ -23,6 +23,7 @@ const CardContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [search, setSearch] = useState<string>('');
   const [selectedId, setSelectedId] = useState<string>("");
   const [favorites, setFavorites] = useState<Character[]>([]);
+  const [enabledFavoriteView, setEnableFavoriteView] = useState<boolean>(false);
   const { result, loading } = useRequester<CharacterResponse>({
     requestCallback: () => fetchCharacters({ limit }),
   });

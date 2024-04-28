@@ -1,21 +1,26 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import Like from '@/components/Like/Like';
 import Triangle from '@/components/Triangle/Triangle';
 import useRequester from '@/hooks/useRequester';
 import { Character } from '@/type/character';
 import { fetchCharacter } from '@/utils/api';
-import { useRouter } from 'next/router';
 import styles from './characterDetail.module.scss';
 import { useCardContext } from '@/context/CardContext';
 
 const CharacterDetail = () => {
-  const router = useRouter();
-  const {selectedId: id} = useCardContext();
+  const {selectedId: id, setSelectedId} = useCardContext();
   const { result: character, loading } = useRequester<Character | undefined>({
     requestCallback: () => fetchCharacter(id),
     enabled: Boolean(id)
   });
+  
+  useEffect(() => {
+    
+    return () => {
+      setSelectedId("");
+    }
+  }, [setSelectedId]);
   
   const description = useMemo(() => {
     /**
@@ -29,7 +34,6 @@ const CharacterDetail = () => {
   }, [character?.description]);
   
   if (!character) return;
-  
   return (
     <div className={styles.characterContent}>
         <span className={styles.photo}>
