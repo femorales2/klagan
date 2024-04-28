@@ -25,6 +25,11 @@ const UseRequester = <T = any>({ requestCallback, enabled = true }: IUseRequeste
         }
       })();
     }
+    /**
+     * sometimes this lint is a cons due to certain cases we don't
+     * need to provide all dependencies due to an infinite effect callback
+     */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled]);
 
   return { loading, error, result };
