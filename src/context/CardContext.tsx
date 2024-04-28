@@ -11,6 +11,8 @@ interface ICardContext {
   selectedId: string;
   toggleFavorite(character: Partial<Character>): void;
   setSelectedId: Dispatch<SetStateAction<string>>;
+  enabledFavoriteView: boolean;
+  setEnableFavoriteView: Dispatch<SetStateAction<boolean>>;
 }
 
 const CardContext = createContext<ICardContext>({} as unknown as ICardContext);
@@ -52,7 +54,9 @@ const CardContextProvider = ({ children }: { children: React.ReactNode }) => {
         favorites,
         toggleFavorite,
         selectedId,
-        setSelectedId
+        setSelectedId,
+        enabledFavoriteView,
+        setEnableFavoriteView
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Card from '@/components/Card/Card';
 import classNames from 'classnames';
 import { useCardContext } from '@/context/CardContext';
@@ -6,12 +6,18 @@ import { useRouter } from 'next/router';
 import styles from './CardsWrapper.module.scss';
 
 const CardsWrapper = () => {
-  const { data, search } = useCardContext();
+  const { data, search, favorites, enabledFavoriteView,  } = useCardContext();
   const router = useRouter();
-
+  
+  const favoritesIds = useMemo(() => {
+    return favorites.map(favorite => favorite.id);
+  }, [favorites]);
+  
+  console.log(favorites);
   return (
     <div className={classNames(styles.wrapper)}>
       {data.results
+        ?.filter(character => !enabledFavoriteView || favoritesIds.includes(character.id))
         ?.filter((character) =>
           character.name.toLowerCase().includes(search.toLowerCase())
         )
