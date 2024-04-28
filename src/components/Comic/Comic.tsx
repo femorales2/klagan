@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./Comic.module.scss";
+import styles from './Comic.module.scss';
 import { ComicDate } from '@/type/ComicType';
 import Image from 'next/image';
 
@@ -9,7 +9,7 @@ interface IComic {
   issueDate?: ComicDate;
 }
 
-const Comic = ({title, thumb, issueDate}: IComic) => {
+const Comic = ({ title, thumb, issueDate }: IComic) => {
   return (
     <div className={styles.comic}>
       <div>
@@ -17,13 +17,11 @@ const Comic = ({title, thumb, issueDate}: IComic) => {
       </div>
       <div className={styles.detail}>
         <div className={styles.title}>{title}</div>
-        {
-          issueDate ? (
-            <div className={styles.year}>
-              {new Date(issueDate.date).getFullYear()}
-            </div>
-          ) : null
-        }
+        {issueDate ? (
+          <div className={styles.year}>
+            {new Date(issueDate.date).getFullYear()}
+          </div>
+        ) : null}
       </div>
     </div>
   );

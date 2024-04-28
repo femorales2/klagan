@@ -8,19 +8,26 @@ interface ILike {
   size?: number;
 }
 
-const Like = ({characterId, size = 10}: ILike) => {
-  const {toggleFavorite, favorites} = useCardContext();
-  
-  const isFavorite = useMemo(() => favorites.some(favorite => favorite.id === characterId), [favorites, characterId]);
-  
+const Like = ({ characterId, size = 10 }: ILike) => {
+  const { toggleFavorite, favorites } = useCardContext();
+
+  const isFavorite = useMemo(
+    () => favorites.some((favorite) => favorite.id === characterId),
+    [favorites, characterId]
+  );
+
   const handleClick = (e: MouseEvent) => {
     e.stopPropagation();
-    toggleFavorite({id: characterId});
-  }
-  
+    toggleFavorite({ id: characterId });
+  };
+
   return (
     <span onClick={handleClick}>
-      {isFavorite ? <Heart width={size} height={size} /> : <EmptyHeart width={size} height={size} />}
+      {isFavorite ? (
+        <Heart width={size} height={size} />
+      ) : (
+        <EmptyHeart width={size} height={size} />
+      )}
     </span>
   );
 };

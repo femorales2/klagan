@@ -8,13 +8,21 @@ import { useRouter } from 'next/router';
 
 const NavLikes = () => {
   const router = useRouter();
-  const {favorites, setEnableFavoriteView, enabledFavoriteView} = useCardContext();
+  const { favorites, setEnableFavoriteView, enabledFavoriteView } =
+    useCardContext();
   return (
-    <div className={classNames(styles.navLikes)} onClick={() => {
-      setEnableFavoriteView(true);
-      router.push("/");
-    }}>
-      <Image src={LikeIcon} alt="Favorites" className={classNames(styles.likeIcon)} />
+    <div
+      className={classNames(styles.navLikes)}
+      onClick={() => {
+        setEnableFavoriteView(true);
+        router.push('/');
+      }}
+    >
+      <Image
+        src={LikeIcon}
+        alt="Favorites"
+        className={classNames(styles.likeIcon)}
+      />
       <span>{favorites.length}</span>
     </div>
   );

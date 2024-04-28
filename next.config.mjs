@@ -3,9 +3,7 @@ const nextConfig = {
   basePath: '/klagan',
   reactStrictMode: false,
   images: {
-    domains: [
-      "i.annihil.us"
-    ]
+    domains: ['i.annihil.us']
   }
 };
 

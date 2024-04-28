@@ -8,25 +8,25 @@ export type Character = {
   comics: {
     available: number;
     items: Comic[];
-  }
-}
+  };
+};
 
 export type Comic = {
   name: string;
   resourceURI: string;
-}
+};
 
 export type CharacterResponse = {
   data: {
     results: Character[];
     count?: number;
-  }
-}
+  };
+};
 
 export type Thumbnail = {
   path: string;
   extension: string;
-}
+};
 
 export type ParamsType = {
   apikey: string;
@@ -34,4 +34,4 @@ export type ParamsType = {
   offset: string;
   hash?: string;
   ts?: string;
-}
+};

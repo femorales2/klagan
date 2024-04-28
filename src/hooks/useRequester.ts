@@ -6,13 +6,16 @@ interface IUseRequester<T> {
   enabled?: boolean;
 }
 
-const UseRequester = <T = any>({ requestCallback, enabled = true }: IUseRequester<T>) => {
+const UseRequester = <T = any>({
+  requestCallback,
+  enabled = true
+}: IUseRequester<T>) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState(false);
   const [result, setResult] = useState<T>();
-  
+
   useEffect(() => {
-    if(enabled) {
+    if (enabled) {
       (async () => {
         try {
           setLoading(true);

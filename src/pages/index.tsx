@@ -5,14 +5,10 @@ import CardsWrapper from '@/components/CardsWrapper/CardsWrapper';
 import { useCardContext } from '@/context/CardContext';
 
 export default function Home() {
-  const {enabledFavoriteView} = useCardContext();
+  const { enabledFavoriteView } = useCardContext();
   return (
     <div className={classNames(styles.home)}>
-      {
-        enabledFavoriteView && (
-          <h2>Favorites</h2>
-        )
-      }
+      {enabledFavoriteView && <h2>Favorites</h2>}
       <SearchInput />
       <CardsWrapper />
     </div>

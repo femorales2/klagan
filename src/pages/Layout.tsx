@@ -10,9 +10,12 @@ const Layout = ({ children }: React.PropsWithChildren) => {
     <>
       <Head>
         <title>Marvel&apos;s Characters</title>
-        <meta name="description" content="This is a code challenge for K-lagan" />
+        <meta
+          name="description"
+          content="This is a code challenge for K-lagan"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/assets/img/favicon.ico" />
+        <link rel="icon" href="/klagan/assets/img/favicon.ico" />
       </Head>
       <div className={robotoC.className}>
         <Navbar />

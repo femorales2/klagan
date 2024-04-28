@@ -5,15 +5,15 @@ export type ComicType = {
   title: string;
   thumbnail: Thumbnail;
   dates: ComicDate[];
-}
+};
 
 export type ComicDate = {
   date: string;
   type: string;
-}
+};
 
 export type ComicResponse = {
   data: {
     results: ComicType[];
-  }
-}
+  };
+};

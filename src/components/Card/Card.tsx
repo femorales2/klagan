@@ -12,7 +12,7 @@ interface ICard extends Pick<Character, 'id' | 'name'> {
   onLikeClick?(e: React.MouseEvent<HTMLSpanElement>): void;
 }
 
-const Card = ({id, name, thumb, onClick }: ICard) => {
+const Card = ({ id, name, thumb, onClick }: ICard) => {
   return (
     <div className={classNames(styles.card)} onClick={onClick}>
       <Image

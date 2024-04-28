@@ -7,15 +7,18 @@ import styles from './CardsWrapper.module.scss';
 import { getFavoritesIds } from '@/utils/character';
 
 const CardsWrapper = () => {
-  const { data, search, favorites, enabledFavoriteView,  } = useCardContext();
+  const { data, search, favorites, enabledFavoriteView } = useCardContext();
   const router = useRouter();
-  
+
   const favoritesIds = useMemo(() => getFavoritesIds(favorites), [favorites]);
-  
+
   return (
     <div className={classNames(styles.wrapper)}>
       {data.results
-        ?.filter(character => !enabledFavoriteView || favoritesIds.includes(character.id))
+        ?.filter(
+          (character) =>
+            !enabledFavoriteView || favoritesIds.includes(character.id)
+        )
         ?.filter((character) =>
           character.name.toLowerCase().includes(search.toLowerCase())
         )

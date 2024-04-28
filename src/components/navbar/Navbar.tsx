@@ -8,7 +8,7 @@ import NavLikes from '@/components/navLikes/NavLikes';
 import { useCardContext } from '@/context/CardContext';
 
 const Navbar = () => {
-  const {setEnableFavoriteView} = useCardContext();
+  const { setEnableFavoriteView } = useCardContext();
   return (
     <nav className={classNames(styles.nav)}>
       <Link href={'/'} onClick={() => setEnableFavoriteView(false)}>

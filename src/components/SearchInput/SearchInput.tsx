@@ -10,15 +10,23 @@ import { getFavoritesIds } from '@/utils/character';
 interface ISearchInput {}
 
 const SearchInput = (props: ISearchInput) => {
-  const { data, search, setSearch, enabledFavoriteView, favorites } = useCardContext();
-  
+  const { data, search, setSearch, enabledFavoriteView, favorites } =
+    useCardContext();
+
   const results = useMemo(() => {
-    return (Boolean(search)
-      ? enabledFavoriteView ? favorites.length : data.results.filter(char => char.name.toLowerCase().includes(search.toLowerCase())).length
-      : enabledFavoriteView ? favorites.length : data.count) ?? 0;
-  },
-    [data.count, data.results, search, favorites, enabledFavoriteView]);
-  
+    return (
+      (Boolean(search)
+        ? enabledFavoriteView
+          ? favorites.length
+          : data.results.filter((char) =>
+              char.name.toLowerCase().includes(search.toLowerCase())
+            ).length
+        : enabledFavoriteView
+          ? favorites.length
+          : data.count) ?? 0
+    );
+  }, [data.count, data.results, search, favorites, enabledFavoriteView]);
+
   return (
     <div className={classNames(styles.searchWrapper)}>
       <div className={classNames(styles.searchInput)}>
@@ -34,8 +42,7 @@ const SearchInput = (props: ISearchInput) => {
         <hr />
       </div>
       <span className={classNames(styles.results)}>
-        {results}{' '}
-        RESULT{results === 0 || results > 1 ? "S" : ""}
+        {results} RESULT{results === 0 || results > 1 ? 'S' : ''}
       </span>
     </div>
   );

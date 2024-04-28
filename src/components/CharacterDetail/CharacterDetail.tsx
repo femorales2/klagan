@@ -9,19 +9,18 @@ import styles from './characterDetail.module.scss';
 import { useCardContext } from '@/context/CardContext';
 
 const CharacterDetail = () => {
-  const {selectedId: id, setSelectedId} = useCardContext();
+  const { selectedId: id, setSelectedId } = useCardContext();
   const { result: character, loading } = useRequester<Character | undefined>({
     requestCallback: () => fetchCharacter(id),
     enabled: Boolean(id)
   });
-  
+
   useEffect(() => {
-    
     return () => {
-      setSelectedId("");
-    }
+      setSelectedId('');
+    };
   }, [setSelectedId]);
-  
+
   const description = useMemo(() => {
     /**
      * there are some characters that doesn't have a description,
@@ -30,27 +29,27 @@ const CharacterDetail = () => {
      */
     return character?.description
       ? character.description
-      : "Created by the Enclave to be part of a race of super humans who would abolish war, illness, and crime, Adam Warlock is a unique being who uses his immense and formidable powers to safeguard the universe."
+      : 'Created by the Enclave to be part of a race of super humans who would abolish war, illness, and crime, Adam Warlock is a unique being who uses his immense and formidable powers to safeguard the universe.';
   }, [character?.description]);
-  
+
   if (!character) return;
   return (
     <div className={styles.characterContent}>
-        <span className={styles.photo}>
-          <Image width={320} height={320} src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                 alt={character.name} />
-        </span>
+      <span className={styles.photo}>
+        <Image
+          width={320}
+          height={320}
+          src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+          alt={character.name}
+        />
+      </span>
       <span className={styles.content}>
-          <div className={styles.titleContainer}>
-            <h1 className={styles.title}>
-            {character.name}
-            </h1>
-            {id && <Like characterId={parseInt(id.toString())} size={24} />}
-          </div>
-          <div className={styles.description}>
-            {description}
-          </div>
-        </span>
+        <div className={styles.titleContainer}>
+          <h1 className={styles.title}>{character.name}</h1>
+          {id && <Like characterId={parseInt(id.toString())} size={24} />}
+        </div>
+        <div className={styles.description}>{description}</div>
+      </span>
       <Triangle size={24} />
     </div>
   );
