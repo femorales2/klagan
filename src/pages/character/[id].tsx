@@ -45,7 +45,7 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async (context) => {
+export const getStaticProps = async (context: {params: {id: string}}) => {
   /*console.log(context);
   const character = await fetchCharacter(context.params.id);*/
   
