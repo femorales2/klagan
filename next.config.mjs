@@ -4,6 +4,9 @@ const nextConfig = {
   reactStrictMode: false,
   images: {
     domains: ['i.annihil.us']
+  },
+  env: {
+    MARVEL_PUBLIC_TOKEN: process.env.MARVEL_PUBLIC_TOKEN
   }
 };
 

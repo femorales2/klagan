@@ -28,7 +28,7 @@ export type Thumbnail = {
   extension: string;
 };
 
-export type ParamsType = {
+export type CharactersParams = {
   apikey: string;
   limit: string;
   offset: string;

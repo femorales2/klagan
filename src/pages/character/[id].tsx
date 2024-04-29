@@ -27,6 +27,7 @@ const Page = ({ id }: ICharacterDetailPage) => {
 
 export const getStaticPaths = async () => {
   const response = await fetchCharacters({ limit: 50, ssr: true });
+  console.log(response);
   const paths = response.data.results.map((character) => ({
     params: {
       id: character.id.toString()
